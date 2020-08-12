@@ -1,10 +1,8 @@
 import index from 'pages/index/index'
 import exchangeRule from 'pages/exchangeRule/exchangeRule'
 import myBenefit from 'pages/myBenefit/myBenefit'
-import weixin from 'pages/index/weixin/weixin'
-import phone from 'pages/index/phone/phone'
-import video from 'pages/index/video/video'
-
+import exchangeList from 'pages/index/exchangeList/exchangeList'
+import exchangeDetail from 'pages/exchangeDetail/exchangeDetail'
 
 export default [
   {
@@ -12,26 +10,40 @@ export default [
     component:index,
     children:[
       {
-        path:'weixin',
-        component:weixin
+        path:'exchangeList/:type',
+        component:exchangeList,
+        props:true,
       },
       {
-        path:'phone',
-        component:phone
-      },
-      {
-        path:'video',
-        component:video
+        path:'',
+        redirect:'exchangeList/weixin'
       }
-    ]
+    ],
+    meta:{
+      isHideFooter:false, //标识footer是否隐藏
+    }
   },
   {
     path: '/exchangeRule',
-    component:exchangeRule
+    component:exchangeRule,
+    meta:{
+      isHideFooter:false, //标识footer是否隐藏
+    }
   },
   {
     path: '/myBenefit',
-    component:myBenefit
+    component:myBenefit,
+    meta:{
+      isHideFooter:false, //标识footer是否隐藏
+    }
+  },
+  {
+    path: '/exchangeDetail/:type',
+    component:exchangeDetail,
+    props:true,
+    meta:{
+      isHideFooter:true, //标识footer是否隐藏
+    }
   },
   {
     path:'',

@@ -2,17 +2,23 @@
   <div class='indexContainer'>
     <!-- 头部 -->
     <div class="header">
-      <img src="../../common/images/ding_01.jpg" alt="">
+      <img class="ding" src="../../common/images/ding_01.jpg" alt="">
       <div class="titleWrap">
-        <router-link class='titleItem' to="/index/weixin">兑换微信立减金</router-link>
-        <router-link class='titleItem' to="/index/phone">兑换手机话费</router-link>
-        <router-link class='titleItem' to="/index/video">兑换视频会员</router-link>
+        <router-link class='titleItem' to="/index/exchangeList/weixin">兑换微信立减金</router-link>
+        <router-link class='titleItem' to="/index/exchangeList/phone">兑换手机话费</router-link>
+        <router-link class='titleItem' to="/index/exchangeList/video">兑换视频会员</router-link>
       </div>
+      <!-- 如何开通e支付按钮 -->
+      <div class="eRule">
+        <span>如何开通e支付</span>
+        <img class="wen" src="../../common/images/wen_03.png" alt="">
+      </div>
+      
     </div>
     <div class="contentWrap">
       <div class="content">
         <!-- 二级路由展示区 -->
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
       </div>
     </div>
   </div>
@@ -36,7 +42,27 @@ export default {
       z-index 99
       left 0
       top 0
-      image
+      .eRule
+        position absolute
+        display flex
+        justify-content space-around
+        align-items center
+        left 246px
+        top 310px
+        width 259px
+        height 47px
+        background-color #fff
+        border-radius 24px
+        span 
+          font-size 26px
+          font-weight bold
+          color #440802
+          margin 0 10px
+        .wen
+          width 32px
+          height 32px
+          margin-right 16px
+      .ding
         width 100%
         height 413px
       .titleWrap
@@ -64,7 +90,7 @@ export default {
       height calc(100vh - 503px) 
       .content
         width 708px
-        height 500px
+        padding-bottom 30px
         background-color #fff
         margin 0 auto
 </style>

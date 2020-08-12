@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 一级路由显示区域 -->
     <router-view></router-view>
-    <Footer></Footer>
+    <Footer v-if="!$route.meta.isHideFooter"></Footer>
   </div>
 </template>
 
