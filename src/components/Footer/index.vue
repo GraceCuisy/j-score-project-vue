@@ -1,15 +1,19 @@
 <template>
   <div class="tabbar">
     <router-link class="tabItem" to="/index">
-      <i class="iconfont icon-zhuye"></i>
+      <i class="iconfont iconzhuye"></i>
       <span>主页</span>
     </router-link>
+    <router-link class="tabItem" to="/scoreQuery">
+      <i class="iconfont icondapaidui"></i>
+      <span>积分查询</span>
+    </router-link>
     <router-link class="tabItem" to="/exchangeRule">
-      <i class="iconfont icon-guizeshuoming"></i>
+      <i class="iconfont iconduihuan_huaban1"></i>
       <span>兑换规则</span>
     </router-link>
     <router-link class="tabItem" to="/myBenefit">
-      <i class="iconfont icon-jiangbei-"></i>
+      <i class="iconfont iconquanyi_huaban1"></i>
       <span>我的权益</span>
     </router-link>
   </div>
@@ -44,8 +48,7 @@ export default {
       &.active
           color #FF9C00
       .iconfont
-        font-size 50px
-        font-weight 700
+        font-size 52px
       span 
         font-size 21px
         font-weight 700

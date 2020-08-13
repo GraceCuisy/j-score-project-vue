@@ -9,11 +9,19 @@
         <router-link class='titleItem' to="/index/exchangeList/video">兑换视频会员</router-link>
       </div>
       <!-- 如何开通e支付按钮 -->
-      <div class="eRule">
+      <div class="eRule" @click="toEGuide">
         <span>如何开通e支付</span>
         <img class="wen" src="../../common/images/wen_03.png" alt="">
       </div>
-      
+      <!-- 用户信息展示框 -->
+      <div class="userWrap">
+        <img src="../../common/images/video/you_03.png" alt="">
+        <div class="userInfoBox">
+          <div class="weixinName">焰火灿烂</div>
+          <!-- <div class="phoneNum">13658962568</div> -->
+          <div class="phoneNum">{{"13658962568".replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')}}</div>
+        </div>
+      </div>
     </div>
     <div class="contentWrap">
       <div class="content">
@@ -27,6 +35,11 @@
 <script>
 export default {
   name: 'index',
+  methods: {
+    toEGuide(){
+      this.$router.push('/eGuide')
+    }
+  },
 }
 </script>
 
@@ -62,6 +75,30 @@ export default {
           width 32px
           height 32px
           margin-right 16px
+      .userWrap
+        position absolute
+        display flex
+        align-items center
+        width 230px
+        height 78px
+        right 0
+        top 38px
+        background-color #fff
+        border 3px solid #e85d68
+        border-radius 50px 0 0 50px
+        border-right none
+        img 
+          width 63px
+          height 63px
+          margin-left 8px
+          margin-right 5px
+        .userInfoBox
+          color #440802
+          .weixinName
+            font-size 24px
+            font-weight 700
+          .phoneNum
+            font-size 22px
       .ding
         width 100%
         height 413px
@@ -76,12 +113,24 @@ export default {
         align-items center
         line-height 90px
         .titleItem
+          position relative
           text-decoration none
           height 100%
           padding 0 10px
           font-size 26px
           font-weight 700
           color #666
+          &.active
+            color #ff6664
+            &:after
+              content ""
+              position absolute
+              left 0
+              bottom 0
+              display block
+              width 100%
+              height 8px
+              background-color #ff6664
     .contentWrap
       position relative
       left 0

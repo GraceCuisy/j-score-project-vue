@@ -9,6 +9,7 @@ function resolve(dir){
 module.exports={
   lintOnSave:false,
   devServer:{
+    disableHostCheck:true,
     open:true,
     // proxy:{
     //   '/api':{ //只处理/api开头路径的请求
