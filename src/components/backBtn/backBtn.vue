@@ -20,6 +20,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .backBtn
     position absolute
+    z-index 10
     display flex
     align-items center
     left 23px

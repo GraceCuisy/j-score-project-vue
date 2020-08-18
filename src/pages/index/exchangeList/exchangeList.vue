@@ -1,6 +1,6 @@
 <template>
-  <div class='exchangeListWrap'>
-    <div class="list">
+  <div class='exchangeListWrap' ref="exchangeListWrap">
+    <div class="list" ref="list">
       <div class="item" @click="toDetail">
         <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
         <div class="tit-one">
@@ -9,7 +9,8 @@
           <span class="tit-r">(10.1元)</span>
         </div>
         <div class="tit-two">10元微信立减金</div>
-        <div class="tit-three">消费满10.1元可使用</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
       </div>
       <div class="item">
         <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
@@ -19,7 +20,8 @@
           <span class="tit-r">(10.1元)</span>
         </div>
         <div class="tit-two">10元微信立减金</div>
-        <div class="tit-three">消费满10.1元可使用</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
       </div>
       <div class="item">
         <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
@@ -29,7 +31,8 @@
           <span class="tit-r">(10.1元)</span>
         </div>
         <div class="tit-two">10元微信立减金</div>
-        <div class="tit-three">消费满10.1元可使用</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
       </div>
       <div class="item">
         <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
@@ -39,18 +42,112 @@
           <span class="tit-r">(10.1元)</span>
         </div>
         <div class="tit-two">10元微信立减金</div>
-        <div class="tit-three">消费满10.1元可使用</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
+      </div>
+      <div class="item" @click="toDetail">
+        <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
+        <div class="tit-one">
+          <span class="tit-l">20</span>
+          <span class="tit-m">积分</span>
+          <span class="tit-r">(10.1元)</span>
+        </div>
+        <div class="tit-two">10元微信立减金</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
+      </div>
+      <div class="item">
+        <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
+        <div class="tit-one">
+          <span class="tit-l">20</span>
+          <span class="tit-m">积分</span>
+          <span class="tit-r">(10.1元)</span>
+        </div>
+        <div class="tit-two">10元微信立减金</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
+      </div>
+      <div class="item">
+        <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
+        <div class="tit-one">
+          <span class="tit-l">20</span>
+          <span class="tit-m">积分</span>
+          <span class="tit-r">(10.1元)</span>
+        </div>
+        <div class="tit-two">10元微信立减金</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
+      </div>
+      <div class="item">
+        <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
+        <div class="tit-one">
+          <span class="tit-l">20</span>
+          <span class="tit-m">积分</span>
+          <span class="tit-r">(10.1元)</span>
+        </div>
+        <div class="tit-two">10元微信立减金</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
+      </div>
+      <div class="item" @click="toDetail">
+        <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
+        <div class="tit-one">
+          <span class="tit-l">20</span>
+          <span class="tit-m">积分</span>
+          <span class="tit-r">(10.1元)</span>
+        </div>
+        <div class="tit-two">10元微信立减金</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
+      </div>
+      <div class="item">
+        <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
+        <div class="tit-one">
+          <span class="tit-l">20</span>
+          <span class="tit-m">积分</span>
+          <span class="tit-r">(10.1元)</span>
+        </div>
+        <div class="tit-two">10元微信立减金</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
+      </div>
+      <div class="item">
+        <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
+        <div class="tit-one">
+          <span class="tit-l">20</span>
+          <span class="tit-m">积分</span>
+          <span class="tit-r">(10.1元)</span>
+        </div>
+        <div class="tit-two">10元微信立减金</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
+      </div>
+      <div class="item">
+        <img  class="topImg" src="../../../common/images/weixin/weixin.png" alt="">
+        <div class="tit-one">
+          <span class="tit-l">20</span>
+          <span class="tit-m">积分</span>
+          <span class="tit-r">(10.1元)</span>
+        </div>
+        <div class="tit-two">10元微信立减金</div>
+        <div class="tit-three" v-if="type==='weixin'">消费满10.1元可使用</div>
+        <div class="peopleNum">已有1000人兑换</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 export default {
   name: 'exchangeList',
   props:['type'],
   mounted() {
-    console.log('111');
+    this.$nextTick(()=>{
+      this.scroll=new BScroll(this.$refs.exchangeListWrap,{
+        scrollY:true,
+      })
+    })
   },
   methods: {
     toDetail(){
@@ -71,12 +168,15 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .exchangeListWrap
     width 100%
-    height 100%
+    height 720px
+    overflow hidden
+    webkit-overflow-scrolling: touch;
     .list
       width 100%
       display flex
       flex-wrap wrap
       .item
+        position relative
         width 326px
         height 320px
         background-color #fdffff
@@ -92,7 +192,7 @@ export default {
         .tit-one
           display flex
           justify-content center
-          margin-top 10px
+          margin-top 4px
           color #ff6664
           align-items center
           .tit-l
@@ -120,7 +220,20 @@ export default {
           font-size 24px
           color #999
           font-weight 700
-
+        .peopleNum
+          position absolute
+          left 50%
+          margin-left -108px
+          bottom -17px
+          width 216px
+          height 34px
+          background-color #ededed
+          border 1px solid #e5e5e5
+          font-size 24px
+          color #ffa200
+          text-align center
+          line-height 34px
+          border-radius 20px
 .test
   font-size 0
 </style>

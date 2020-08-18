@@ -35,6 +35,9 @@
 <script>
 export default {
   name: 'index',
+  created(){
+    document.title="积分大派兑"
+  },
   methods: {
     toEGuide(){
       this.$router.push('/eGuide')
@@ -136,10 +139,11 @@ export default {
       left 0
       top 503px
       width 100%
-      height calc(100vh - 503px) 
+      height calc(100vh - 503px)
       .content
         width 708px
         padding-bottom 30px
         background-color #fff
         margin 0 auto
+        border-radius 0 0 13px 13px
 </style>

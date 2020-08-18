@@ -23,6 +23,7 @@ export default [
     ],
     meta:{
       isHideFooter:false, //标识footer是否隐藏
+      title:"积分大派兑"
     }
   },
   {
@@ -30,6 +31,7 @@ export default [
     component:scoreQuery,
     meta:{
       isHideFooter:false, //标识footer是否隐藏
+      title:"积分查询"
     }
   },
   {
@@ -37,6 +39,7 @@ export default [
     component:exchangeRule,
     meta:{
       isHideFooter:false, //标识footer是否隐藏
+      title:"兑换规则"
     }
   },
   {
@@ -44,6 +47,7 @@ export default [
     component:myBenefit,
     meta:{
       isHideFooter:false, //标识footer是否隐藏
+      title:"我的权益"
     }
   },
   {
@@ -52,6 +56,7 @@ export default [
     props:true,
     meta:{
       isHideFooter:true, //标识footer是否隐藏
+      title:"兑换详情"
     }
   },
   {
@@ -60,10 +65,11 @@ export default [
     props:true,
     meta:{
       isHideFooter:true, //标识footer是否隐藏
+      title:"如何开通e支付"
     }
   },
   {
     path:'',
     redirect:'/index'
-  }
+  },
 ]

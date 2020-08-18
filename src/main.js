@@ -3,6 +3,11 @@ import App from './App.vue'
 import 'lib-flexible/flexible'
 import router from './router/index'
 import store from './store'
+import { Field,cellGroup } from 'vant';
+
+Vue.use(Field);
+Vue.use(cellGroup);
+
 Vue.config.productionTip = false
 
 new Vue({

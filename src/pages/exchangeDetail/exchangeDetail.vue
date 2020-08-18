@@ -1,5 +1,16 @@
 <template>
   <div class="detailWrap">
+    <!-- 弹窗 -->
+    <messageDialog :isShowDialog.sync="isShowDialog" :isPhoneErr="isPhoneErr" v-if="isShowDialog">
+      <!-- 手机号错误提示结构 -->
+      <span class="msgContent" v-if="isPhoneErr">请输入正确的手机号!</span>
+      <!-- 积分兑换的结构 -->
+      <div class="exchangeContent" v-else>
+        <div>您将使用<span class="lightNum">7340</span>个积分</div>
+        <div>兑换<span class="lightNum">10</span>元{{correctText}}</div>
+        <div>兑换后积分将自动扣除</div>
+      </div>
+    </messageDialog>
     <!-- 返回按钮 -->
     <backBtn></backBtn>
     <!-- 头部 -->
@@ -11,7 +22,7 @@
       </div>
     </div>
     <!-- 微信立减金中间操作 -->
-    <div class="weixinMiddle" v-if="false">
+    <div class="weixinMiddle" v-if="type==='weixin'">
       <div class="wei-tit">
         <span class="wei-tit-l">20</span>
         <span class="wei-tit-r">积分</span>
@@ -20,12 +31,12 @@
       <div class="wei-bottom">
         <div class="wei-bottom-t">选择立减金类型</div>
         <div class="wei-bottom-b">
-          <div class="selectItem">
-            <img src="../../common/images/weixin/no-select.png" alt="">
+          <div class="selectItem" @click="changeCardType('saving')" >
+            <i class="radioBtn" :class="{activeClass:selectedCardType==='saving'}"></i>
             <span>仅限工行储蓄卡</span>
           </div>
-          <div class="selectItem">
-            <img src="../../common/images/weixin/selected.png" alt="">
+          <div class="selectItem" @click="changeCardType('debit')">
+            <i class="radioBtn" :class="{activeClass:selectedCardType==='debit'}"></i>
             <span>仅限工行信用卡</span>
           </div>
         </div>
@@ -37,9 +48,9 @@
         <span class="phone-tit-l">20</span>
         <span class="phone-tit-r">积分</span>
       </div>
-      <div class="inputWrap">
-        <input type="text" placeholder="请输入充值手机号码">
-      </div>
+      <van-cell-group class="inputWrap">
+        <van-field class="phoneNum" v-model="phoneNum" type="tel" placeholder="请输入充值手机号码" />
+      </van-cell-group>
     </div>
     <!-- 兑换规则 -->
     <div class="ruleWrap">
@@ -51,7 +62,7 @@
     </div>
     <!-- 兑换按钮 -->
     <div class="btnWrap">
-      <div class="exchangeBtn">
+      <div class="exchangeBtn" @click="toExchange">
         <img src="../../common/images/phone/an_10.png" alt="">
         <span>立即兑换</span>
       </div>
@@ -60,15 +71,52 @@
 </template>
 
 <script>
+import messageDialog from "../../components/messageDialog/messageDialog"
 import backBtn from '../../components/backBtn/backBtn'
 export default {
   name: 'exchangeDetail',
+  props:['type'],
+  data() {
+    return {
+      phoneNum:'',
+      // 手机号校验规则
+      phoneNumRule:/^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/,
+      isPhoneErr:false, //判断消息弹窗显示的文本是手机号错误/兑换详情信息
+      isShowDialog:false,// 是否显示消息弹窗
+      selectedCardType:'saving' //选中的银行卡类型 储蓄卡 saving  信用卡 debit
+    }
+  },
   components:{
     backBtn,
+    messageDialog,
   },
-  props:['type'],
   mounted() {
     console.log(this.type);
+    if(this.type==="weixin"){
+      this.correctText="微信立减金"
+    }else if(this.type==="phone"){
+      this.correctText="话费充值"
+    }else{
+      // 点击每一项跳转到兑换详情页时需要把具体是什么会员月卡传过来, 爱奇艺/腾讯/优酷/芒果
+      this.correctText="视频会员月卡"
+    }
+  },
+  methods: {
+    // 点击立即兑换的回调函数
+    toExchange(){
+      if(!this.phoneNumRule.test(this.phoneNum) && this.type !== "weixin"){
+        // 不是合法手机号时弹窗提示
+        this.isShowDialog=true
+        this.isPhoneErr=true
+      }else{
+        // 手机号码合法    点击确定调用接口进行兑换, 得到结果显示兑换成功或失败的弹窗
+        this.isShowDialog=true
+        this.isPhoneErr=false
+      }
+    },
+    changeCardType(cardType){
+      this.selectedCardType=cardType;
+    }
   },
 }
 </script>
@@ -80,6 +128,16 @@ export default {
     height 100%
     background-color #f4f4f4
     overflow hidden
+    .msgContent
+      font-size 28px
+      color #666
+      font-weight bold
+    .exchangeContent
+      font-size 28px
+      color #666
+      font-weight bold
+      .lightNum
+        color #FF7753
     .titleWrap
       display flex
       align-items center
@@ -145,10 +203,16 @@ export default {
             box-sizing border-box
             border 1px solid #ddd
             border-radius 13px
-            img
+            .radioBtn
+              display block
               width 30px
               height 30px
               margin-right 13px
+              background-image url('../../common/images/weixin/no-select.png')
+              background-size contain
+              background-repeat no-repeat  
+              &.activeClass
+                background-image url('../../common/images/weixin/selected.png')
             span 
               font-size 26px
               font-weight 700
@@ -177,8 +241,8 @@ export default {
         background-color #f3f3f3
         border: 1px solid #ddd
         border-radius 16px
-        input
-          margin-left 21px
+        .phoneNum
+          width 100%
           border none
           outline none
           background-color #f3f3f3

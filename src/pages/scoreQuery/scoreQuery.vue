@@ -17,7 +17,8 @@
       <p>下载注册并登录“中国工商银行”APP，进入首页后，点击
          底部菜单栏“惠精选”按钮，在“热门活动”上方可以查看到
          个人拥有的综合积分详情。
-         <span class="clickDetail">点此查看积分详情</span>
+         <!-- <a class="clickDetail" href="http://m.icbc.com.cn/ICBC/kfssjyxkh9/3.htm" target="_blank">点此查看积分详情</a> -->
+         <a class="clickDetail" href="http://m.icbc.com.cn/ICBC/kfssjyxkh9/3.htm">点此查看积分详情</a>
       </p>
     </div>
   </div>
@@ -65,7 +66,7 @@ export default {
       background-color #ffffff
       border-radius 13px
       margin 70px auto 0
-      padding 62px 22px 0 22px
+      padding 62px 22px 24px 22px
       font-size 24px
       color #666
       line-height 41px
@@ -79,4 +80,5 @@ export default {
       .clickDetail
         color #ff7d5b
         font-weight 700
+        text-decoration none
 </style>
