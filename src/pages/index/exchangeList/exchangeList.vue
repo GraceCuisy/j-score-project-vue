@@ -146,6 +146,7 @@ export default {
     this.$nextTick(()=>{
       this.scroll=new BScroll(this.$refs.exchangeListWrap,{
         scrollY:true,
+        click:true
       })
     })
   },

@@ -202,6 +202,7 @@ export default {
     this.$nextTick(()=>{
       this.scroll=new BScroll(this.$refs.benefitListWrap,{
         scrollY:true,
+        click:true,
       })
     })
   },
